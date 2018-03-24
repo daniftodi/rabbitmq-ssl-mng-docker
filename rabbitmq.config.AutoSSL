@@ -4,11 +4,12 @@
                 { tcp_listeners, [5672] },
                 { ssl_listeners, [5671] },
                 { ssl_options, [
-		    { cacertfile, "/ssl-certs/chain.pem"},
-                    { certfile, "/ssl-certs/cert.pem" },
-                    { keyfile, "/ssl-certs/key.pem" },
+                    { cacertfile, "/home/testca/cacert.pem" },
+                    { certfile, "/home/server/cert.pem" },
+                    { keyfile, "/home/server/key.pem" },
                     { verify,verify_peer },
-                    { fail_if_no_peer_cert, true }
+                    { fail_if_no_peer_cert, true },
+                    { versions, ['tlsv1.2', 'tlsv1.1' ] }
                 ]}
         ] },
 
@@ -22,8 +23,8 @@
 	{rabbitmq_web_stomp,
       		[{ssl_config, [{port, 61614},
                      {backlog,    1024},
-		     {cacertfile, "/ssl-certs/chain.pem"},
-                     {certfile,   "/ssl-certs/cert.pem"},
-                     {keyfile,    "/ssl-certs/key.pem"}
+                     {certfile,   "/home/server/cert.pem"},
+                     {keyfile,    "/home/server/key.pem"},
+                     {cacertfile, "/home/testca/cacert.pem"}
                  ]}]}	
 ].
